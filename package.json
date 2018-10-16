@@ -1,10 +1,11 @@
 {
-  "name": "udacitygooglemaps",
+  "name": "ryan-google-maps-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-google-maps": "^9.4.5",
     "react-scripts": "2.0.5"
   },
   "scripts": {
@@ -21,5 +22,18 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "App.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanwooj/udacityGoogleMaps.git"
+  },
+  "author": "Ryan Woo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanwooj/udacityGoogleMaps/issues"
+  },
+  "homepage": "https://github.com/ryanwooj/udacityGoogleMaps#readme"
 }
