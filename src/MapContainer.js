@@ -5,6 +5,29 @@ import './App.css';
 
 class MapContainer extends Component {
 
+  onMapReady = (mapProps, map) => this.searchNearby(map, map.center)
+
+  searchNearby = (map, center) => {
+    const {google} = this.props
+    const service = new google.maps.places.PlacesService(map)
+
+    //Specific Location, radius and places types for API searchNearby
+    const request = {
+      location: {
+        lat: 34.0577889,
+        lng: -118.3009088
+      },
+      radius: '1000',
+      type: ['restaurant'],
+      keyword: 'korean'
+    }
+    service.nearbySearch(request, (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        this.props.setData(results)
+      }
+    })
+  }
+
   render() {
     if (!this.props.loaded) return <div>Loading...</div>;
 
@@ -23,6 +46,7 @@ class MapContainer extends Component {
           style={{ height: '100%', position: 'relative', width: '100%' }}
           initialCenter={{ lat: 34.06000, lng: -118.293392}}
           zoom={15}
+          onReady={this.onMapReady}
         >
           {items.map((loc, index) =>
             (<Marker

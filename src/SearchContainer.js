@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class SearchContainer extends Component {
 
   render() {
-    const { items, query, filterList } = this.props
+    const { items, query, filterList, handleToggleOpen } = this.props
 
     return (
       <div className="sidebar">
@@ -25,7 +25,10 @@ class SearchContainer extends Component {
           <ul id="list">
             {items.map((item, index) => (
               <li key={index}>
-                <button className="button">
+                <button
+                  className="button"
+                  onClick={() => handleToggleOpen(item)}
+                >
                   {item.name}
                 </button>
               </li>

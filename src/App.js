@@ -9,9 +9,9 @@ class App extends Component {
     query: '',
     items: [],
     results: [],
-    currentRestaurant: null,
-    postition: null,
+    currentRestaurant: {},
     selectedPlace: {},
+    destinations: [],
     showingInfoWindow: false,
     locations: [
       {name: "Hae Jang Chon", location: {lat: 34.063839, lng: -118.30614}},
@@ -32,13 +32,11 @@ class App extends Component {
   }
 
   handleToggleOpen = (loc) => {
+    console.log(loc)
     this.setState({
       currentRestaurant: {
         name: loc.name,
-        position: {
-          lat: loc.geometry.location.lat,
-          lng: loc.geometry.location.lng
-        },
+        position: loc.geometry.location,
         openingHours: loc.opening_hours.open_now,
         rating: loc.rating,
         address: loc.vicinity
@@ -55,31 +53,17 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.0577889,-118.3009088&radius=1500&type=restaurant&keyword=korean&key=AIzaSyBqXhHQkXbDQ6_tKD0Hbd86dfsiJ7ypFS0',)
-    .then(res =>
-      res.json()
-    ).then(text => {
-      this.setState({
-        results: text.results,
-        locations: text.results,
-        items: text.results
-      })
-    }).catch(err => {
-      console.log(err)
+  }
+
+  setData = (arr) => {
+    console.log(arr)
+
+    this.setState({
+      items: arr,
+      results: arr,
+      locations: arr
     })
-    // const xhr = this.createCORSRequest('GET', 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.0577889,-118.3009088&radius=1500&type=restaurant&keyword=korean&key=AIzaSyBqXhHQkXbDQ6_tKD0Hbd86dfsiJ7ypFS0');
-    // xhr.onload = () => {
-    //   var response = JSON.parse(xhr.responseText)
-    //   this.setState({
-    //     results: response.results,
-    //     locations: response.results,
-    //     items: response.results
-    //   })
-    // }
-    // xhr.onerror = () => {
-    //   console.log('error')
-    // }
-    // xhr.send()
+    console.log(this.state.items)
   }
 
 
@@ -90,6 +74,7 @@ class App extends Component {
           query={this.state.query}
           filterList={this.filterList}
           items={this.state.items}
+          handleToggleOpen={this.handleToggleOpen}
         />
         <MapContainer
           currentRestaurant={this.state.currentRestaurant}
@@ -98,6 +83,7 @@ class App extends Component {
           onInfoWindowClose={this.onInfoWindowClose}
           onMapClicked={this.onMapClicked}
           items={this.state.items}
+          setData={this.setData}
         />
       </div>
 
