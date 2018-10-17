@@ -8,7 +8,11 @@ class MapContainer extends Component {
   render() {
     if (!this.props.loaded) return <div>Loading...</div>;
 
-    const { items, results, currentRestaurant, position, showingInfoWindow, locations, handleToggleOpen, OnInfoWindowClose, onMapClicked } = this.props
+    const { items,
+            currentRestaurant,
+            handleToggleOpen,
+            onMapClicked
+           } = this.props
 
     return (
       <div className="app">

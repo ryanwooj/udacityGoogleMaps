@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 
 class SearchContainer extends Component {
-  state = {
-    query: '',
-    items: this.props.results,
-  }
 
   render() {
-    const { items, query, filterList, handleSubmit, changeMarker, results, handleInputChange,  currentRestaurant, position, showingInfoWindow, locations, handleToggleOpen, onInfoWindowClose, onMapClicked } = this.props
+    const { items, query, filterList } = this.props
 
     return (
       <div className="sidebar">
