@@ -1,32 +1,77 @@
-.App {
-  text-align: center;
+.map {
+  margin: 0;
+  width: 80%;
+  height: 100vh;
+}
+.sidebar {
+  margin: 0;
+  width: 20%;
+  height: 100vh
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+#list {
+  list-style-type: none;
+  padding-left: 0;
+}
+button {
+  width: 100%;
+  padding: 15px;
+  color: #ffffff;
+  background-color: black;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
 }
 
-.App-link {
-  color: #61dafb;
+.menu {
+  display: inline-block;
+  cursor: pointer;
+  margin: 3px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.res-name {
+  font-size: 2em;
+  text-align: center;
+  text-shadow: 1px 1px #939393;
+}
+.open {
+  text-align: right;
+  color: green;
+}
+.closed {
+  text-align: right;
+  color: red;
+}
+.res-rating {
+
+}
+
+.res-address {
+  font-size: 1em;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+/* Rotate first bar */
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-45deg) translate(-9px, 6px) ;
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    transform: rotate(45deg) translate(-8px, -8px) ;
 }
