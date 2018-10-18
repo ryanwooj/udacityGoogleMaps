@@ -1,0 +1,77 @@
+{
+  "results": [
+    {
+      "name": "Jeonju",
+      "img": "/public/images/snd",
+      "myrate": "3.8"
+    },{
+      "name": "Hodori",
+      "img": "/public/images/snd.jpg",
+      "myrate": "4.2"
+    },{
+      "name": "Park's Barbeque",
+      "img": "/public/images/pbbq.png",
+      "myrate": "4.5"
+    },{
+      "name": "Beverly Soon Tofu Restaurant",
+      "img": "/public/images/bbl.jpg",
+      "myrate": "4.0"
+    },{
+      "name": "Chosun Galbee",
+      "img": "/public/images/csgb.jpg",
+      "myrate": "4.5"
+    },{
+      "name": "Kang Ho Dong Baekjeong",
+      "img": "/public/images/khdbj.jpg",
+      "myrate": "4.9"
+    },{
+      "name": "Sun Nong Dan",
+      "img": "/public/images/snd.jpg",
+      "myrate": "4.5"
+    },{
+      "name": "Gwang Yang BBQ",
+      "img": "/public/images/gwbb.jpg",
+      "myrate": "4.3"
+    },{
+      "name": "Quarters Korean BBQ",
+      "img": "/public/images/qtb.png",
+      "myrate": "4.7"
+    },{
+      "name": "Ham Ji Park",
+      "img": "/public/images/hjb.jpg",
+      "myrate": "4.8"
+    },{
+      "name": "Seong Buk Dong",
+      "img": "/public/images/sbd.jpg",
+      "myrate": "4.7"
+    },{
+      "name": "BCD Tofu House",
+      "img": "/public/images/bcd.jpg",
+      "myrate": "4.4"
+    },{
+      "name": "Eight Korea BBQ",
+      "img": "/public/images/8s.jpg",
+      "myrate": "4.4"
+    },{
+      "name": "Myoung Dong Kyo Ja",
+      "img": "/public/images/mdgj.png",
+      "myrate": "4.5"
+    },{
+      "name": "Hae Jang Chon Korean BBQ Restaurant",
+      "img": "/public/images/hjc.jpg",
+      "myrate": "4.6"
+    },{
+      "name": "Ahgassi Gopchang",
+      "img": "/public/images/agcgc.jpg",
+      "myrate": "4.7"
+    },{
+      "name": "Jjukku Jjukku BBQ",
+      "img": "/public/images/jkjk.jpg",
+      "myrate": "4.8"
+    },{
+      "name": "Hae Jang Chon Korean BBQ Restaurant",
+      "img": "/public/images/hjc.jpg",
+      "myrate": "4.6"
+    }
+  ]
+}

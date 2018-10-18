@@ -27,7 +27,6 @@ class MapContainer extends Component {
       }
     })
   }
-
   render() {
     if (!this.props.loaded) return <div>Loading...</div>;
 
@@ -36,6 +35,7 @@ class MapContainer extends Component {
             handleToggleOpen,
             onMapClicked
            } = this.props
+
 
     return (
       <div className="app">

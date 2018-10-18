@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import MapContainer from './MapContainer.js';
 import SearchContainer from './SearchContainer.js';
 
-
 class App extends Component {
 
   state = {
     query: '',
     items: [],
-    results: [],
+    profiles: [],
     currentRestaurant: {},
     selectedPlace: {},
     destinations: [],
@@ -52,29 +51,44 @@ class App extends Component {
       });
   };
 
-  componentDidMount() {
-  }
 
   setData = (arr) => {
-    console.log(arr)
-
     this.setState({
       items: arr,
-      results: arr,
       locations: arr
     })
-    console.log(this.state.items)
   }
 
+  _callAPI = () => {
+    return fetch('https://randomuser.me/api/?results=20')
+    .then(res => res.json())
+    .then(json => {
+      return json.results
+    })
+    .catch(err => console.log(err))
+  }
+
+  componentDidMount() {
+    this._getProfile()
+  }
+
+  _getProfile = async () => {
+    const profiles = await this._callAPI()
+    this.setState({
+      profiles: profiles
+    })
+  }
 
   render() {
     return (
       <div className="container">
+        {console.log(this.state.profiles)}
         <SearchContainer
           query={this.state.query}
           filterList={this.filterList}
           items={this.state.items}
           handleToggleOpen={this.handleToggleOpen}
+          profiles={this.state.profiles}
         />
         <MapContainer
           currentRestaurant={this.state.currentRestaurant}
@@ -84,6 +98,7 @@ class App extends Component {
           onMapClicked={this.onMapClicked}
           items={this.state.items}
           setData={this.setData}
+          getPlacesDetails={this.getPlacesDetails}
         />
       </div>
 
