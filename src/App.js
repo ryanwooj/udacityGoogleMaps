@@ -7,6 +7,7 @@ class App extends Component {
   state = {
     query: '',
     items: [],
+    results: [],
     profiles: [],
     currentRestaurant: {},
     selectedPlace: {},
@@ -25,9 +26,9 @@ class App extends Component {
     this.setState({
       query: event.target.value
     })
-    var updatedList = this.state.results
+    var updatedList = this.state.items
     updatedList = updatedList.filter(item => item.name.toLowerCase().search(event.target.value.toLowerCase()) !== -1 )
-    this.setState({items: updatedList})
+    this.setState({results: updatedList})
   }
 
   handleToggleOpen = (loc) => {
@@ -55,7 +56,8 @@ class App extends Component {
   setData = (arr) => {
     this.setState({
       items: arr,
-      locations: arr
+      locations: arr,
+      results: arr
     })
   }
 
@@ -89,6 +91,7 @@ class App extends Component {
           items={this.state.items}
           handleToggleOpen={this.handleToggleOpen}
           profiles={this.state.profiles}
+          results={this.state.results}
         />
         <MapContainer
           currentRestaurant={this.state.currentRestaurant}
@@ -99,6 +102,7 @@ class App extends Component {
           items={this.state.items}
           setData={this.setData}
           getPlacesDetails={this.getPlacesDetails}
+          results={this.state.results}
         />
       </div>
 

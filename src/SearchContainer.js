@@ -7,7 +7,7 @@ class SearchContainer extends Component {
   }
 
   render() {
-    const { items, query, filterList, handleToggleOpen, profiles } = this.props
+    const { items, query, filterList, handleToggleOpen, profiles, results } = this.props
 
     return (
       <div className="sidebar">
@@ -27,7 +27,7 @@ class SearchContainer extends Component {
             aria-label="Search Ryans'"
           />
           <ul id="list">
-            {items.map((item, index) => (
+            {results.map((item, index) => (
               <li key={index}>
 
                 <button
