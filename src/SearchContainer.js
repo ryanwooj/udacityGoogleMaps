@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 class SearchContainer extends Component {
 
+  getTime = () => {
+    return Math.floor(Math.random() * 10)
+  }
+
   render() {
     const { items, query, filterList, handleToggleOpen, profiles } = this.props
 
@@ -31,11 +35,13 @@ class SearchContainer extends Component {
                   onClick={() => handleToggleOpen(item)}
                 ><p>{item.name}</p>
                   <img src={profiles[index].picture.thumbnail} alt="ss"/>
-                  <p>Owner: {profiles[index].name.first} {profiles[index].name.last}</p>
+                  <p>{profiles[index].name.first} {profiles[index].name.last}
+                    <br/> Was there {this.getTime()} Hours Ago
+                  </p>
                 </button>
               </li>
             ))}
-            
+
           </ul>
         </div>
       </div>

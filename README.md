@@ -4,7 +4,7 @@
 ## Description:
 This single page app uses Google Maps and Places as well as random-users API to list all restaurants near Ryan in Los Angeles.
 Each Restaurants have Address, Name, and Rating based on google API.
-The App uses random-users API to generate random people and assign it to fake "Restaurants Owner."
+The App uses random-users API to generate random people and assign fake "Who was there x hours ago".
 
 The App used create-react-app.
 
