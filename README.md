@@ -16,9 +16,18 @@ then run:
 `npm start`
 The browser should automatically open the app.  If it doesn't, navigate to [http://localhost:3000](http://localhost:3000)
 
+## How to tun the app in Production build?
+
+⚠️The service worker with the create-react-app only works in the production build, not in the development mode. 🔆
+You can run it in production by using the following commands
+
+npm run build
+serve -s build
+And then visit localhost:5000
+
 ## Built With
 @google-maps-react - Set of React components wrapping underlying Google Maps API instances
-@Create React App - Bootstrapped the project
+@create-react-app - Bootstrapped the project
 
 
 

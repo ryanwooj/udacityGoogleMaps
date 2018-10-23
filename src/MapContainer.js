@@ -31,7 +31,7 @@ class MapContainer extends Component {
     if (!this.props.loaded)
       return <div>Loading...</div>;
 
-    const {items, currentRestaurant, handleToggleOpen} = this.props
+    const {results, items, currentRestaurant, handleToggleOpen, toggleView, toggleViewChange} = this.props
 
     return (<div className="app">
       <Map className="map" google={this.props.google} style={{
@@ -42,9 +42,17 @@ class MapContainer extends Component {
           lat: 34.06000,
           lng: -118.293392
       }} zoom={15} onReady={this.onMapReady}>
-        {items.map((loc, index) => (<Marker name={loc.name} onClick={() => handleToggleOpen(loc)} position={loc.geometry.location} animation={this.props.google.maps.Animation.DROP} key={loc.id}></Marker>))}
+        {results.map((loc, index) => (
+          <Marker
+            name={loc.name}
+            onClick={() => handleToggleOpen(loc)}
+            position={loc.geometry.location}
+            animation={this.props.google.maps.Animation.DROP}
+            key={loc.id}>
+          </Marker>
+        ))}
         {
-          currentRestaurant && <InfoWindow position={currentRestaurant.position} visible>
+          currentRestaurant  &&  <InfoWindow position={currentRestaurant.position} onClick={() => handleToggleOpen(currentRestaurant, true)} onClose={() => toggleViewChange(currentRestaurant, false)} visible>
             <div>
               <h2 className="res-name">{currentRestaurant.name}</h2>
               {

@@ -5,47 +5,26 @@ import SearchContainer from './SearchContainer.js';
 class App extends Component {
   // Defined States. location array just in case.
   state = {
+    requestSuccess: false,
     query: '',
     items: [],
     results: [],
-    profiles: [],
+    profiles: [{
+      name: {
+        first: 'Jason',
+        last: 'Woo'
+      },
+      picture: {
+        thumbnail: null
+      },
+
+    }],
     currentRestaurant: {},
     selectedPlace: {},
     destinations: [],
-    showingInfoWindow: false,
-    locations: [
-      {
-        name: "Hae Jang Chon",
-        location: {
-          lat: 34.063839,
-          lng: -118.30614
-        }
-      }, {
-        name: "Ham ji Park",
-        location: {
-          lat: 34.063843,
-          lng: -118.295918
-        }
-      }, {
-        name: "Kang Ho Dong Baekjeong",
-        location: {
-          lat: 34.063733,
-          lng: -118.297282
-        }
-      }, {
-        name: "Man Soo Korean BBQ",
-        location: {
-          lat: 34.057969,
-          lng: -118.303994
-        }
-      }, {
-        name: "YUP DDUK LA",
-        location: {
-          lat: 34.063988,
-          lng: -118.300759
-        }
-      }
-    ]
+    toggleView: false,
+    locations: [],
+    errorLog: ''
   }
 
   // Function filters lists when user types on input and manages states on change.
@@ -56,8 +35,22 @@ class App extends Component {
     this.setState({results: updatedList})
   }
 
+  toggleViewChange = (loc, status) => {
+    console.log(loc)
+    this.setState({
+      currentRestaurant: {
+        name: loc.name,
+        position: loc.location,
+        openingHours: loc.openingHours,
+        rating: loc.rating,
+        address: loc.address,
+        view: false
+      }
+    })
+  }
+
   // The Function that when it's clicked, retrieves item and set currentRestaurant to information received
-  handleToggleOpen = (loc) => {
+  handleToggleOpen = (loc, status) => {
     console.log(loc)
     this.setState({
       currentRestaurant: {
@@ -65,18 +58,11 @@ class App extends Component {
         position: loc.geometry.location,
         openingHours: loc.opening_hours.open_now,
         rating: loc.rating,
-        address: loc.vicinity
+        address: loc.vicinity,
+        view: true
       }
     })
   }
-  //
-  // onMapClicked = () => {
-  //   if (this.state.showingInfoWindow)
-  //     this.setState({
-  //       activeMarker: null,
-  //       showingInfoWindow: false
-  //     });
-  // };
 
   // sets data when places come from google places API
   setData = (arr) => {
@@ -84,26 +70,43 @@ class App extends Component {
   }
 
   //calls API from randomuser and set state.
-  componentDidMount() {
+  componentWillMount() {
     this._getProfile()
   }
 
   _getProfile = async () => {
     const profiles = await this._callAPI()
-    this.setState({profiles: profiles})
+    this.setState({
+      profiles: profiles,
+      requestSuccess: true
+    })
   }
   _callAPI = () => {
     return fetch('https://randomuser.me/api/?results=20').then(res => res.json()).then(json => {
       return json.results
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      this.setState({
+        errorLog: err
+      })
+    })
   }
 
   render() {
-    return (<div className="container">
-      {console.log(this.state.profiles)}
-      <SearchContainer query={this.state.query} filterList={this.filterList} items={this.state.items} handleToggleOpen={this.handleToggleOpen} profiles={this.state.profiles} results={this.state.results}/>
-      <MapContainer currentRestaurant={this.state.currentRestaurant} locations={this.state.locations} handleToggleOpen={this.handleToggleOpen} onInfoWindowClose={this.onInfoWindowClose} items={this.state.items} setData={this.setData} getPlacesDetails={this.getPlacesDetails} results={this.state.results}/>
-    </div>);
+    const { requestSuccess, errorLog } = this.state
+
+    return (
+      requestSuccess ? (
+        <div className="container">
+          {console.log(this.state.profiles)}
+          <SearchContainer query={this.state.query} filterList={this.filterList} items={this.state.items} handleToggleOpen={this.handleToggleOpen} profiles={this.state.profiles} results={this.state.results}/>
+          <MapContainer toggleViewChange={this.toggleViewChange} toggleView={this.state.toggleView} currentRestaurant={this.state.currentRestaurant} locations={this.state.locations} handleToggleOpen={this.handleToggleOpen} onInfoWindowClose={this.onInfoWindowClose} items={this.state.items} setData={this.setData} getPlacesDetails={this.getPlacesDetails} results={this.state.results}/>
+        </div>
+      ) : (
+        <div>
+          <p>Loading... Your Map is Loading... {errorLog}</p>
+        </div>
+      )
+    );
   }
 }
 
