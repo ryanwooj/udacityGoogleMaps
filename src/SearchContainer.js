@@ -23,13 +23,13 @@ class SearchContainer extends Component {
         <div className="bar3"></div>
       </div>
       <div className="list-view">
-        <h1 className="side-title">Ryan's Favorite Restaurants</h1>
-        <input type="text" value={query} placeholder="Search in List..." onChange={filterList} role="search" aria-label="Search Ryans'"/>
-        <ul id="list" >
+        <h1 className="side-title" aria-label="app title">Ryan's Favorite Restaurants</h1>
+        <input type="text" value={query} placeholder="Search in List..." onChange={filterList} role="search" aria-label="Search box"/>
+        <ul id="list" role="list">
           {
             results.map((item, index) => (<li key={index} aria-labelledby="list">
 
-              <button className="button" onClick={() => handleToggleOpen(item)}>
+              <button className="button" onClick={() => handleToggleOpen(item)} role="button" aria-label="Restaurant and owner information">
                 <p>{item.name}</p>
                 <img src={profiles[index].picture.thumbnail} alt={item.name+"owner picture"}/>
                 <div>

@@ -48,11 +48,13 @@ class MapContainer extends Component {
             onClick={() => handleToggleOpen(loc)}
             position={loc.geometry.location}
             animation={this.props.google.maps.Animation.DROP}
-            key={loc.id}>
+            key={loc.id}
+            aria-label="marker"
+          >
           </Marker>
         ))}
         {
-          currentRestaurant  &&  <InfoWindow position={currentRestaurant.position} onClick={() => handleToggleOpen(currentRestaurant, true)} onClose={() => toggleViewChange(currentRestaurant, false)} visible>
+          currentRestaurant  &&  <InfoWindow position={currentRestaurant.position} onClick={() => handleToggleOpen(currentRestaurant, true)} onClose={() => toggleViewChange(currentRestaurant, false)} aria-label="infowindow" visible>
             <div>
               <h2 className="res-name">{currentRestaurant.name}</h2>
               {
